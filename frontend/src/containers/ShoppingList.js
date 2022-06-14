@@ -11,16 +11,14 @@ import ListItem from './ListItem';
 
 
 const ShoppingList = ()=>{
-    const [isLoading, setIsLoading] = useImmer(false);
     const {loading,data,refetch} = useQuery(GET_ALL_SHOPPING_LIST_ITEM);
     const {sidePanelAction,addItemSidePanel} = useContext(SidePanelContext);
     
     useEffect(()=>{
         if(!sidePanelAction.isOpen){
-            setIsLoading(loading);
             refetch();
         }
-    },[sidePanelAction.isOpen,refetch,loading,setIsLoading])
+    },[sidePanelAction.isOpen,refetch])
 
     const PopulatedList = ()=>{        
         return (
