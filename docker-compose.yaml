@@ -1,0 +1,70 @@
+version: '3.9'
+services: 
+
+  postgres:
+    image: postgres:alpine
+    restart: always
+    volumes: 
+      - postgresData:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports: 
+      - ${POSTGRES_PORT}:5432
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      - postgresNetwork
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    volumes:
+      - pgadmin4Data:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - 5050:80
+    depends_on:
+      - postgres
+    networks:
+      - postgresNetwork
+
+  backend:
+    build: ./backend
+    restart: always
+    environment:
+      - POSTGRES_SERVER=postgres
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_DB=${POSTGRES_DB}    
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PORT=${PORT}
+      - HOST=backend
+    ports:
+      - 7331:7331
+    depends_on:
+      - postgres
+    networks:
+      - postgresNetwork
+
+  frontend:
+    build: ./frontend
+    stdin_open: true
+    tty: true
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    depends_on:
+      - postgres
+    networks:
+      - postgresNetwork
+
+networks:
+  postgresNetwork:
+    driver: bridge
+volumes:
+  postgresData:
+  pgadmin4Data:
