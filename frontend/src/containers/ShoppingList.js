@@ -22,7 +22,7 @@ const ShoppingList = ()=>{
         }
     },[sidePanelAction.isOpen,refetch,loading,setIsLoading])
 
-    const ShoppingList = ()=>{        
+    const PopulatedList = ()=>{        
         return (
             <div id='populatedList'>
                 <div className='listHeader'>
@@ -39,7 +39,7 @@ const ShoppingList = ()=>{
         <div className='container' >
             <SideItemSidePanel reFetch={refetch}/>
             <div id='loader'><Loading isLoading={loading} /></div>
-            {data?<ShoppingList/>:<EmptyList/>}
+            {data?<PopulatedList/>:<EmptyList/>}
         </div>
     );
 };
