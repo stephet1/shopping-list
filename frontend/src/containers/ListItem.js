@@ -6,6 +6,8 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import { PATCH_ITEM_PURCHASED_SHOPPING_LIST_ITEM,DELETE_SHOPPING_LIST_ITEM } from '../queries/queries';
 import { useMutation } from '@apollo/client';
 import {SidePanelContext} from '../context/SidePanelContext';
+import DeleteModal from './DeleteModal';
+import { useImmer } from 'use-immer';
 
 const labelStyle = {fontSize:'13px', fontWeight:'bold', color:'black'};
 const descriptionStyle = {fontSize:'12px',color:'grey'}
@@ -13,6 +15,7 @@ const ListItem = (({listItems ,reFetch})=>{
     const [patchItemPurchased] = useMutation(PATCH_ITEM_PURCHASED_SHOPPING_LIST_ITEM);
     const [deleteShoppingItem] = useMutation(DELETE_SHOPPING_LIST_ITEM);
     const {editItemSidePanel} = useContext(SidePanelContext);
+    const [modalValue,setModalValue] = useImmer({isOpen:false, deleteID:null});
     const handleClick = ((e)=>{   
         patchItemPurchased({
             variables:{
@@ -34,7 +37,14 @@ const ListItem = (({listItems ,reFetch})=>{
         }).then(()=>{
             reFetch();
         });
-    })
+    });
+
+    const openDeleteModal = ((id)=>{
+        setModalValue(draft=>{
+            draft.deleteID=id;
+            draft.isOpen=true
+        });
+    });
 
     const Items = ()=>{
         return listItems.map((item,key)=>{
@@ -52,7 +62,7 @@ const ListItem = (({listItems ,reFetch})=>{
                         <IconButton style={{padding:0}} disableRipple={true} onClick={()=>handleEdit(item.id)}>
                             <CreateOutlinedIcon className='icon' fontSize='small' />
                         </IconButton>
-                        <IconButton style={{padding:0}} disableRipple={true} onClick={()=>handleDelete(item.id)}>
+                        <IconButton style={{padding:0}} disableRipple={true} onClick={()=>openDeleteModal(item.id)}>
                             <DeleteOutlineOutlinedIcon className='icon' fontSize='small' />
                         </IconButton>
                     </div>
@@ -63,7 +73,10 @@ const ListItem = (({listItems ,reFetch})=>{
     }
 
     return(
-        <Items/>
+        <div>
+            <DeleteModal isModalOpen={modalValue.isOpen} id={modalValue.deleteID} setModalValue={setModalValue} handleDelete={handleDelete}/>
+            <Items/>
+        </div>
     );
 });
 
