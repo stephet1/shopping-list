@@ -37,9 +37,6 @@
   padding-top: 7%;
   flex-direction: column;
   color: #898b8e;
-  animation: fadeInAnimation ease 1.5s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
 }
 
 #populatedList{
