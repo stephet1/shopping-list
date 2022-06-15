@@ -51,6 +51,8 @@ services:
 
   frontend:
     build: ./frontend
+    environment:
+      - PORT=${PORT}
     stdin_open: true
     tty: true
     ports:

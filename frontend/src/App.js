@@ -3,11 +3,12 @@ import Header from './containers/Header';
 import ShoppingList from './containers/ShoppingList';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import {SidePanelContextProvider} from './context/SidePanelContext';
+
+const port =  process.env.PORT||'7331';
+
 function App() {
-
-
   const client = new ApolloClient({
-    uri:`http://localhost:7331/graphql`,
+    uri:`http://localhost:${port}/graphql`,
     cache: new InMemoryCache()
   });
 
