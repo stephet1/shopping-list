@@ -46,7 +46,8 @@ const ShoppingList = ()=>{
         if (data){
             if (data.getAllShoppingItems){
                 if(data.getAllShoppingItems.length>0){
-                    return <PopulatedList/>
+                    return <PopulatedList/>;
+                }
             }
         }
         return <EmptyList/>;
@@ -55,6 +56,7 @@ const ShoppingList = ()=>{
     return (
         <div className='container' >
             <SideItemSidePanel reFetch={refetch}/>
+            
             {loading?<div id='loader'><Loading isLoading={loading} /></div>:<ListComponent/>}
         </div>
     );
