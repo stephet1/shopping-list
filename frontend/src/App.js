@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './containers/Header';
 import ShoppingList from './containers/ShoppingList';
-import {ApolloClient, InMemoryCache, ApolloProvider, gql} from '@apollo/client';
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import {SidePanelContextProvider} from './context/SidePanelContext';
 function App() {
 

@@ -44,8 +44,11 @@ const ShoppingList = ()=>{
 
     const isListEmpty = () =>{
         if (data){
-            return data.getAllShoppingItems.length>0?true:false;
+            if (data.getAllShoppingItems){
+                return data.getAllShoppingItems.length>0?true:false;
+            }
         }
+        
         return false;
     }
 
