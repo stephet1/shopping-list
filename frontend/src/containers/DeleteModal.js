@@ -1,9 +1,7 @@
 import {Button} from '../components/Button';
-import {DELETE_SHOPPING_LIST_ITEM} from '../queries/queries';
-import {useMutation} from '@apollo/client';
-import {Box, formHelperTextClasses, Modal} from '@mui/material';
+import {Modal} from '@mui/material';
 import PropTypes from 'prop-types';
-import { useImmer } from 'use-immer';
+
 
 const style = {
     position: 'absolute',
@@ -66,7 +64,7 @@ DeleteModal.propTypes = {
     isModalOpen:PropTypes.bool.isRequired,
     setModalValue:PropTypes.func.isRequired,
     handleDelete:PropTypes.func.isRequired,
-    id:PropTypes.string.isRequired
+    id:PropTypes.string
 }
 
 DeleteModal.defaultProps={
