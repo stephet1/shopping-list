@@ -4,7 +4,7 @@ import ShoppingList from './containers/ShoppingList';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import {SidePanelContextProvider} from './context/SidePanelContext';
 
-const port =  process.env.PORT||'7331';
+const port =  process.env.BACKEND_PORT||'7331';
 
 function App() {
   const client = new ApolloClient({
