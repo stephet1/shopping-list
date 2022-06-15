@@ -1,6 +1,4 @@
 import { useEffect,useContext } from 'react';
-import { useImmer } from 'use-immer';
-import EmptyList from './EmptyList';
 import SideItemSidePanel from './SideItemSidePanel';
 import Loading from '../components/Loading';
 import {SidePanelContext} from '../context/SidePanelContext';
@@ -33,6 +31,16 @@ const ShoppingList = ()=>{
             </div>
         );
     }
+    
+    const EmptyList = () => {    
+        return (
+            <div id='emptyList'>
+                <p>Your shopping list is empty :(</p>
+                <Button sx={{minWidth:'8rem'}}  onClick={addItemSidePanel}>Add your first item</Button>
+            </div>
+        );
+    };
+    
     return (
         <div className='container' >
             <SideItemSidePanel reFetch={refetch}/>
