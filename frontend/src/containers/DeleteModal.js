@@ -65,7 +65,8 @@ const DeleteModal = (({isModalOpen,setModalValue,handleDelete,id})=>{
 DeleteModal.propTypes = {
     isModalOpen:PropTypes.bool.isRequired,
     setModalValue:PropTypes.func.isRequired,
-    reFetch:PropTypes.func
+    handleDelete:PropTypes.func.isRequired,
+    id:PropTypes.string.isRequired
 }
 
 DeleteModal.defaultProps={
