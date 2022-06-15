@@ -53,6 +53,8 @@ services:
     build: ./frontend
     environment:
       - BACKEND_PORT=${PORT}
+    volumes:
+      - reactData:/frontend/node_modules
     stdin_open: true
     tty: true
     ports:
@@ -70,3 +72,4 @@ networks:
 volumes:
   postgresData:
   pgadmin4Data:
+  reactData:
