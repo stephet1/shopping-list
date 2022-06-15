@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 import ListItem from './ListItem';
 
 
-const ShoppingList = ()=>{
+const ShoppingList = ()=>{ 
     const {loading,data,refetch} = useQuery(GET_ALL_SHOPPING_LIST_ITEM);
     const {sidePanelAction,addItemSidePanel} = useContext(SidePanelContext);
     
@@ -31,7 +31,7 @@ const ShoppingList = ()=>{
             </div>
         );
     }
-    
+
     const EmptyList = () => {    
         return (
             <div id='emptyList'>
@@ -40,12 +40,20 @@ const ShoppingList = ()=>{
             </div>
         );
     };
-    
+
+
+    const isListEmpty = () =>{
+        if (data){
+            return data.getAllShoppingItems.length>0?true:false;
+        }
+        return false;
+    }
+
     return (
         <div className='container' >
             <SideItemSidePanel reFetch={refetch}/>
             <div id='loader'><Loading isLoading={loading} /></div>
-            {data?<PopulatedList/>:<EmptyList/>}
+            {isListEmpty()?<PopulatedList/>:<EmptyList/>}
         </div>
     );
 };
