@@ -25,7 +25,7 @@ const ShoppingList = ()=>{
                     <h4>Your Items</h4>
                     <Button sx={{minWidth:'2rem',height:'1.7rem'}}  onClick={addItemSidePanel}>Add item</Button>
                 </div>
-                <div style={{overflowX:'hidden',maxHeight:'75vh'}}>
+                <div style={{overflowX:'hidden',maxHeight:'75vh',paddingRight:'5px'}}>
                     <ListItem reFetch={refetch} listItems={data.getAllShoppingItems} />
                 </div>
             </div>
