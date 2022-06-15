@@ -56,6 +56,8 @@ services:
       - PORT=${REACT_PORT}
     volumes:
       - reactData:/frontend/node_modules
+      - ./frontend/src:/frontend/src
+      - ./frontend/public:/frontend/public
     stdin_open: true
     tty: true
     ports:
