@@ -53,14 +53,15 @@ services:
     build: ./frontend
     environment:
       - BACKEND_PORT=${PORT}
+      - PORT=${REACT_PORT}
     volumes:
       - reactData:/frontend/node_modules
     stdin_open: true
     tty: true
     ports:
-      - 3000:3000
+      - ${REACT_PORT}:${REACT_PORT}
     expose:
-      - 3000
+      - ${REACT_PORT}
     depends_on:
       - postgres
     networks:
