@@ -1,5 +1,5 @@
 import {Button} from '../components/Button';
-import {Modal} from '@mui/material';
+import { Modal} from '@mui/material';
 import PropTypes from 'prop-types';
 
 
@@ -33,7 +33,7 @@ const body = {
 }
 
 
-const DeleteModal = (({isModalOpen,setModalValue,handleDelete,id})=>{
+const DeleteModal = (({isModalOpen,setModalValue,handleDelete})=>{
 
     const handleClose = ()=>{
         setModalValue((draft)=>{
@@ -53,7 +53,7 @@ const DeleteModal = (({isModalOpen,setModalValue,handleDelete,id})=>{
                 </div>
                 <div className='formButton' >
                     <Button variant='text' onClick={handleClose}>Cancel</Button>
-                    <Button onClick={()=>{handleDelete(id)}} >Delete</Button>
+                    <Button onClick={handleDelete} >Delete</Button>
                 </div>
             </div>
         </Modal>
@@ -63,8 +63,8 @@ const DeleteModal = (({isModalOpen,setModalValue,handleDelete,id})=>{
 DeleteModal.propTypes = {
     isModalOpen:PropTypes.bool.isRequired,
     setModalValue:PropTypes.func.isRequired,
-    handleDelete:PropTypes.func.isRequired,
-    id:PropTypes.string
+    handleDelete:PropTypes.func.isRequired
+
 }
 
 DeleteModal.defaultProps={
