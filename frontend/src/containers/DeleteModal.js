@@ -33,26 +33,16 @@ const body = {
 }
 
 
-const DeleteModal = (({isModalOpen,setModalValue,handleDelete})=>{
-
-    const handleClose = ()=>{
-        setModalValue((draft)=>{
-            draft.isOpen = false;
-            draft.deleteID = null
-        });
-    }
-
+const DeleteModal = (({isModalOpen,closeDeleteModal,handleDelete})=>{
     return(
-        <Modal 
-            open={isModalOpen}
-        >
+        <Modal open={isModalOpen}>
             <div style={style}>
                 <div>
                     <p style={header}>Delete Item?</p>
                     <p style={body}>Are you sure you want to delete this item? This can not be undone.</p>
                 </div>
                 <div className='formButton' >
-                    <Button variant='text' onClick={handleClose}>Cancel</Button>
+                    <Button variant='text' onClick={closeDeleteModal}>Cancel</Button>
                     <Button onClick={handleDelete} >Delete</Button>
                 </div>
             </div>
@@ -62,7 +52,7 @@ const DeleteModal = (({isModalOpen,setModalValue,handleDelete})=>{
 
 DeleteModal.propTypes = {
     isModalOpen:PropTypes.bool.isRequired,
-    setModalValue:PropTypes.func.isRequired,
+    closeDeleteModal:PropTypes.func.isRequired,
     handleDelete:PropTypes.func.isRequired
 
 }

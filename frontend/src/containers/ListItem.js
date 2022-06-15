@@ -42,7 +42,14 @@ const ListItem = (({listItems ,reFetch})=>{
     const openDeleteModal = ((id)=>{
         setModalValue(draft=>{
             draft.deleteID=id;
-            draft.isOpen=true
+            draft.isOpen=true;
+        });
+    });
+
+    const closeDeleteModal = (()=>{
+        setModalValue(draft=>{
+            draft.deleteID=null;
+            draft.isOpen=false;
         });
     });
 
@@ -74,7 +81,7 @@ const ListItem = (({listItems ,reFetch})=>{
 
     return(
         <div>
-            <DeleteModal isModalOpen={modalValue.isOpen} id={modalValue.deleteID} setModalValue={setModalValue} handleDelete={handleDelete}/>
+            <DeleteModal isModalOpen={modalValue.isOpen} id={modalValue.deleteID} closeDeleteModal={closeDeleteModal} handleDelete={handleDelete}/>
             <Items/>
         </div>
     );
