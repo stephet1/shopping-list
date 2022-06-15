@@ -29,10 +29,10 @@ const ListItem = (({listItems ,reFetch})=>{
         editItemSidePanel(id);
     });
 
-    const handleDelete = ((id)=>{
+    const handleDelete = (()=>{
         deleteShoppingItem({
             variables:{
-                Id:id
+                Id:modalValue.deleteID
             }
         }).then(()=>{
             reFetch();
