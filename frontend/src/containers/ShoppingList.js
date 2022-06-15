@@ -42,21 +42,20 @@ const ShoppingList = ()=>{
     };
 
 
-    const isListEmpty = () =>{
+    const ListComponent = () =>{
         if (data){
             if (data.getAllShoppingItems){
-                return data.getAllShoppingItems.length>0?true:false;
+                if(data.getAllShoppingItems.length>0){
+                    return <PopulatedList/>
             }
         }
-        
-        return false;
+        return <EmptyList/>;
     }
 
     return (
         <div className='container' >
             <SideItemSidePanel reFetch={refetch}/>
-            <div id='loader'><Loading isLoading={loading} /></div>
-            {isListEmpty()?<PopulatedList/>:<EmptyList/>}
+            {loading?<div id='loader'><Loading isLoading={loading} /></div>:<ListComponent/>}
         </div>
     );
 };
