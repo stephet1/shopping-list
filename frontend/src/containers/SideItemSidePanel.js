@@ -117,7 +117,7 @@ const SideItemSidePanel = ({reFetch}) =>{
                 <form onSubmit={handleSubmit} className='container'>
                     <div className='container'>
                         <p className='title'>{sidePanelAction.action} an Item</p>
-                        <p>{sidePanelAction.action} your new item below</p>
+                        <p>{sidePanelAction.action} your {sidePanelAction.action==='Add'?'new':''} item below</p>
                         <div className='container formField'>
                             <TextField name='itemName' type='text' onChange={handleInput} label="Item Name" variant="outlined"  fullWidth={true} size='small' value={formValues.itemName} InputLabelProps={labelStyle} />
                             <Textarea name='itemDescription' label='Description' currentChar={formValues.itemDescription.length} charLimit={charLimit} rows={7} value={formValues.itemDescription} onChange={handleInput} InputLabelProps={labelStyle} />
