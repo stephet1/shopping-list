@@ -16,11 +16,11 @@ function App() {
   return (
     <div className="App">
       <Header/>
-        <ApolloProvider client={client}>
-          <SidePanelContextProvider>
-            <ShoppingList/>
-          </SidePanelContextProvider> 
-        </ApolloProvider>
+      <ApolloProvider client={client}>
+        <SidePanelContextProvider>
+          <ShoppingList/>
+        </SidePanelContextProvider> 
+      </ApolloProvider>
     </div>
   );
 }

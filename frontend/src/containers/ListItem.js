@@ -81,7 +81,7 @@ const ListItem = (({listItems ,reFetch})=>{
 
     return(
         <div>
-            <DeleteModal isModalOpen={modalValue.isOpen} id={modalValue.deleteID} closeDeleteModal={closeDeleteModal} handleDelete={handleDelete}/>
+            <DeleteModal isModalOpen={modalValue.isOpen} closeDeleteModal={closeDeleteModal} handleDelete={handleDelete}/>
             <Items/>
         </div>
     );
